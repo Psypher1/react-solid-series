@@ -25,19 +25,30 @@ function Company({ _id, name, employees, onChange = () => {} }) {
       <div>ID: {_id}</div>
       <div>
         Name:{" "}
-        <input
-          className="text-gray-900 p-2"
-          type="text"
+        <TextField
           value={name}
-          onChange={(e) =>
-            onChange((prev) => ({
-              ...prev,
-              name: e.target.value,
-            }))
+          onChange={(name) =>
+            onChange({
+              _id,
+              name,
+              employees,
+            })
           }
         />
       </div>
     </div>
+  );
+}
+
+// generalise component
+function TextField({ value, onChange = () => {} }) {
+  return (
+    <input
+      className="text-gray-900 p-2"
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
   );
 }
 
