@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .custom {
+    @apply text-xl;
+  }
+}
+
+body {
+  @apply text-white bg-gray-900;
+}
+
+h1,
+h2,
+h3 {
+  @apply text-5xl prose-2xl prose-invert;
+}
