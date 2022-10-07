@@ -1,4 +1,4 @@
-import Meta from "@components/Meta";
+import Meta from "@/ui/meta";
 import { useState } from "react";
 
 const json = {
