@@ -19,6 +19,7 @@ const json = {
   ],
 };
 
+//* COMPONENTS THAT HANDLE DIFFERENT PARTS OF YOUR STATE
 function Company({ _id, name, employees, onChange = () => {} }) {
   return (
     <div className="flex flex-col gap-2">
@@ -38,17 +39,39 @@ function Company({ _id, name, employees, onChange = () => {} }) {
       </div>
       <div>
         {employees.map((employee, i) => (
-          <Employee key={i} {...employee} />
+          <Employee
+            key={i}
+            {...employee}
+            onChange={(employee) =>
+              onChange({
+                _id,
+                name,
+                employees: employees.map((_employee, j) =>
+                  i === j ? employee : _employee
+                ),
+              })
+            }
+          />
         ))}
       </div>
     </div>
   );
 }
 
-function Employee({ name, tags = [] }) {
+function Employee({ name, tags = [], onChange = () => {} }) {
   return (
     <div className="flex flex-col gap-2">
-      <div>{name}</div>
+      <div>
+        <TextField
+          value={name}
+          onChange={(name) =>
+            onChange({
+              name,
+              tags,
+            })
+          }
+        />
+      </div>
       <div>
         {tags.map(({ label }, i) => (
           <div key={i}>{label}</div>
