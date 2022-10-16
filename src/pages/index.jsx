@@ -1,5 +1,7 @@
 import Meta from "@/ui/meta";
 import { useState } from "react";
+import TextField from "@/ui/text-field";
+import Employee from "@/features/employee";
 
 const json = {
   _id: "1",
@@ -19,17 +21,11 @@ const json = {
   ],
 };
 
-//* generalised component
-function TextField({ value, onChange = () => {} }) {
-  return (
-    <input
-      className="text-gray-900 p-2"
-      type="text"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
-  );
-}
+//* generalised component - TextField
+/* We can change the onChange functionality from the outside
+  what happens when onChange isn't determined by the component.
+  Behaviour isn't tightly coupled to the compoenent
+*/
 
 //* COMPONENTS THAT HANDLE DIFFERENT PARTS OF YOUR STATE
 function Company({ _id, name, employees, onChange = () => {} }) {
@@ -70,29 +66,7 @@ function Company({ _id, name, employees, onChange = () => {} }) {
   );
 }
 
-// onChange does not make state change, It notifies up the chain that this thing changed
-function Employee({ name, tags = [], onChange = () => {} }) {
-  return (
-    <div className="flex flex-col gap-2  mb-6">
-      <div>
-        <TextField
-          value={name}
-          onChange={(name) =>
-            onChange({
-              name,
-              tags,
-            })
-          }
-        />
-      </div>
-      <div>
-        {tags.map(({ label }, i) => (
-          <div key={i}>{label}</div>
-        ))}
-      </div>
-    </div>
-  );
-}
+// onChange does not make state change, It notifies up the chain that this thing changed  - Employee
 
 export default function Home({ company }) {
   // if prop and state are the same (company), underscore the inner
