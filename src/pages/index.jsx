@@ -19,6 +19,18 @@ const json = {
   ],
 };
 
+//* generalised component
+function TextField({ value, onChange = () => {} }) {
+  return (
+    <input
+      className="text-gray-900 p-2"
+      type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
+  );
+}
+
 //* COMPONENTS THAT HANDLE DIFFERENT PARTS OF YOUR STATE
 function Company({ _id, name, employees, onChange = () => {} }) {
   return (
@@ -58,9 +70,10 @@ function Company({ _id, name, employees, onChange = () => {} }) {
   );
 }
 
+// onChange does not make state change, It notifies up the chain that this thing changed
 function Employee({ name, tags = [], onChange = () => {} }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2  mb-6">
       <div>
         <TextField
           value={name}
@@ -81,21 +94,10 @@ function Employee({ name, tags = [], onChange = () => {} }) {
   );
 }
 
-// generalise component
-function TextField({ value, onChange = () => {} }) {
-  return (
-    <input
-      className="text-gray-900 p-2"
-      type="text"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
-  );
-}
-
 export default function Home({ company }) {
   // if prop and state are the same (company), underscore the inner
   const [_company, setCompany] = useState(company);
+  // company is json object - can't fuck with it or you destroy it everywhere
   return (
     <>
       <Meta
@@ -130,6 +132,17 @@ export async function getServerSideProps() {
               },
               {
                 label: "label 2",
+              },
+            ],
+          },
+          {
+            name: "employee 2",
+            tags: [
+              {
+                label: "excellent",
+              },
+              {
+                label: "punctual",
               },
             ],
           },
