@@ -36,7 +36,7 @@ export default function Home({ company }) {
   // company is json object - can't fuck with it or you destroy it everywhere
   return (
     <>
-      <Meta pageMeta={{ title: "Solid" }} />
+      <Meta pageMeta={{ title: "SOLID Principles" }} />
       <div className="container mx-auto min-h-screen p-20">
         <h1 className="p-4 text-4xl font-semibold">S.O.L.I.D.</h1>
         <div className="border border-gray-600 mb-8" />
