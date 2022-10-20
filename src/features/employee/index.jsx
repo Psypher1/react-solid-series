@@ -20,7 +20,12 @@ export default function Employee({ name, tags = [], onChange = () => {} }) {
           <div key={i}>
             <TextField
               value={label}
-              onChange={(label) => onChange({ label })}
+              onChange={(label) =>
+                onChange({
+                  name,
+                  tags: tags.map((tag, j) => (i === j ? { label } : tag)),
+                })
+              }
             />
           </div>
         ))}
