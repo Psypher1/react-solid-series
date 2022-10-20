@@ -8,7 +8,7 @@ export default function CompanyDetails({
   onChange = () => {},
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 border border-blue-400 p-8">
       <div>ID: {_id}</div>
       <div>
         Name:{" "}
@@ -25,7 +25,7 @@ export default function CompanyDetails({
       </div>
       <div className="flex flex-col gap-2">
         {employees.map((employee, i) => (
-          <div key={i} className="border p-4">
+          <div key={i} className="border border-green-400 p-4">
             <h2>Employee</h2>
             <Employee
               {...employee}

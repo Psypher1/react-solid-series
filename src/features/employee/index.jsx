@@ -2,7 +2,7 @@ import TextField from "@/ui/text-field";
 
 export default function Employee({ name, tags = [], onChange = () => {} }) {
   return (
-    <div className="flex flex-col gap-2  mb-6">
+    <div className="flex flex-col gap-2">
       <div>
         <TextField
           value={name}
@@ -14,9 +14,15 @@ export default function Employee({ name, tags = [], onChange = () => {} }) {
           }
         />
       </div>
-      <div>
+      <div className="flex flex-col gap-2">
+        <h2>Tags</h2>
         {tags.map(({ label }, i) => (
-          <div key={i}>{label}</div>
+          <div key={i}>
+            <TextField
+              value={label}
+              onChange={(label) => onChange({ label })}
+            />
+          </div>
         ))}
       </div>
     </div>
