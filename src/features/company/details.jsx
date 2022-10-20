@@ -23,7 +23,7 @@ export default function CompanyDetails({
           }
         />
       </div>
-      <div>
+      <div className="flex flex-col gap-2">
         {employees.map((employee, i) => (
           <div key={i} className="border p-4">
             <h2>Employee</h2>
